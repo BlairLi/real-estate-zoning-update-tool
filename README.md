@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# Real Estate Zoning Update Tool
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application for managing zoning updates for real estate parcels. Users can select parcels on a map, assign zoning types, and submit updates while maintaining an audit log of all changes.
 
-## Available Scripts
+## Project Structure
 
-In the project directory, you can run:
+```
+real-estate-zoning-update-tool/
+├── frontend/                 # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Map/         # Map component with Leaflet/Mapbox
+│   │   │   ├── ZoningForm/  # Zoning type selection form
+│   │   │   ├── StatsPanel/  # Optional statistics display
+│   │   │   └── common/      # Shared components
+│   │   ├── services/        # API service calls
+│   │   ├── utils/          # Helper functions
+│   │   └── styles/         # CSS files
+├── backend/                 # Spring Boot backend
+│   ├── src/main/java/
+│   │   ├── controller/     # REST endpoints
+│   │   ├── model/         # Data models
+│   │   ├── repository/    # Database repositories
+│   │   ├── service/       # Business logic
+│   │   └── config/        # Configuration
+│   └── src/main/resources/
+│       └── application.properties
+└── README.md
+```
 
-### `npm start`
+## Technology Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend
+- React with TypeScript
+- Leaflet/Mapbox for map visualization
+- Axios for API calls
+- Tailwind CSS for styling
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend
+- Spring Boot (Java)
+- PostgreSQL for main database
+- JPA/Hibernate for ORM
+- Transaction management for atomic operations
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Interactive map display of real estate parcels
+- Single/multiple parcel selection
+- Zoning type updates
+- Audit logging
+- Optional statistics display
+- Transaction management for data consistency
 
-### `npm run build`
+## Database Connection
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+postgres://real_estate:ZT9b0qv6iQ@108.61.159.122:13432/postgres
+Table: real_estate_zoning
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Implementation Strategy
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Phase 1 - Setup**
+   - Initialize React and Spring Boot projects
+   - Set up database connection
+   - Configure map library
 
-### `npm run eject`
+2. **Phase 2 - Core Features**
+   - Implement map display
+   - Add parcel selection
+   - Create zoning update form
+   - Set up basic API endpoints
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Phase 3 - Backend Logic**
+   - Implement transaction management
+   - Add audit logging
+   - Handle concurrent updates
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Phase 4 - Polish**
+   - Add error handling
+   - Implement statistics
+   - Add loading states
+   - Improve UI/UX
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Key Considerations
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Transaction Management:
+  - Use Spring's `@Transactional` for atomic operations
+  - Ensure both parcel update and audit log are in same transaction
+- Error Handling:
+  - Frontend validation
+  - Backend exception handling
+  - User-friendly error messages
+- Performance:
+  - Optimize GeoJSON loading
+  - Implement pagination if needed
+  - Cache frequently accessed data
 
-## Learn More
+## Getting Started
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+(To be added after project setup)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
