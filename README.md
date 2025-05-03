@@ -1,105 +1,67 @@
 # Real Estate Zoning Update Tool
 
-A full-stack web application for managing zoning updates for real estate parcels. Users can select parcels on a map, assign zoning types, and submit updates while maintaining an audit log of all changes.
+A full-stack web application for managing zoning updates for real estate parcels. Users can interactively select parcels on a map, assign new zoning types, and submit updates, all while maintaining an audit log of changes.
 
-## Project Structure
+---  
 
-```
-real-estate-zoning-update-tool/
-├── frontend/                 # React frontend
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Map/         # Map component with Leaflet/Mapbox
-│   │   │   ├── ZoningForm/  # Zoning type selection form
-│   │   │   ├── StatsPanel/  # Optional statistics display
-│   │   │   └── common/      # Shared components
-│   │   ├── services/        # API service calls
-│   │   ├── utils/          # Helper functions
-│   │   └── styles/         # CSS files
-├── backend/                 # Spring Boot backend
-│   ├── src/main/java/
-│   │   ├── controller/     # REST endpoints
-│   │   ├── model/         # Data models
-│   │   ├── repository/    # Database repositories
-│   │   ├── service/       # Business logic
-│   │   └── config/        # Configuration
-│   └── src/main/resources/
-│       └── application.properties
-└── README.md
+## 🌐 Deployed Demo
+
+👉 [https://real-estate-zoning-update-tool.vercel.app](https://real-estate-zoning-update-tool.vercel.app)  
+_Backend hosted on Render: [https://real-estate-zoning-update-tool-backend.onrender.com](https://real-estate-zoning-update-tool-backend.onrender.com)_
+
+---
+
+## 🚀 How to Run the System
+
+### 1. **Clone the Repository**
+
+
+```bash
+git clone https://github.com/BlairLi/real-estate-zoning-update-tool.git
+cd real-estate-zoning-update-tool
 ```
 
-## Technology Stack
+### 2. **Backend Setup (Spring Boot + PostgreSQL)**
+```bash
+cd real-estate-zoning-update-tool_backend
 
-### Frontend
-- React with TypeScript
-- Leaflet/Mapbox for map visualization
-- Axios for API calls
-- Tailwind CSS for styling
+# Make sure you have Java 17+ and Maven installed
+./mvnw clean install
 
-### Backend
-- Spring Boot (Java)
-- PostgreSQL for main database
-- JPA/Hibernate for ORM
-- Transaction management for atomic operations
+# Configure database access
+# src/main/resources/application.properties
+spring.datasource.url=jdbc:postgresql://<your-host>.render.com/<your-db>
+spring.datasource.username=<your-db-username>
+spring.datasource.password=<your-db-password>
 
-## Features
-
-- Interactive map display of real estate parcels
-- Single/multiple parcel selection
-- Zoning type updates
-- Audit logging
-- Optional statistics display
-- Transaction management for data consistency
-
-## Database Connection
-
-```
-postgres://real_estate:ZT9b0qv6iQ@108.61.159.122:13432/postgres
-Table: real_estate_zoning
+# Run the backend
+./mvnw spring-boot:run
 ```
 
-## Implementation Strategy
+### 3. **Frontend Setup (React)**
+```bash
+cd real-estate-zoning-update-tool
 
-1. **Phase 1 - Setup**
-   - Initialize React and Spring Boot projects
-   - Set up database connection
-   - Configure map library
+# Install dependencies
+npm install
 
-2. **Phase 2 - Core Features**
-   - Implement map display
-   - Add parcel selection
-   - Create zoning update form
-   - Set up basic API endpoints
+# Create a `.env.local` file
+touch .env.local
 
-3. **Phase 3 - Backend Logic**
-   - Implement transaction management
-   - Add audit logging
-   - Handle concurrent updates
+```
+Paste the following into <mark>.env.local</mark>
+```env
+REACT_APP_API_URL=https://real-estate-zoning-update-tool-backend.onrender.com
+```
+Then run the server:
+```bash
+npm run start
+```
 
-4. **Phase 4 - Polish**
-   - Add error handling
-   - Implement statistics
-   - Add loading states
-   - Improve UI/UX
+## 💡 Assumptions
+* When updating the zoning type for parcels, users are allowed to update current zoning type
+* Initial data load from the backend may take up to 1–2 minutes due to cold start on Render.
 
-## Key Considerations
-
-- Transaction Management:
-  - Use Spring's `@Transactional` for atomic operations
-  - Ensure both parcel update and audit log are in same transaction
-- Error Handling:
-  - Frontend validation
-  - Backend exception handling
-  - User-friendly error messages
-- Performance:
-  - Optimize GeoJSON loading
-  - Implement pagination if needed
-  - Cache frequently accessed data
-
-## Getting Started
-
-(To be added after project setup)
-
-## License
-
-MIT
+## 📂 Related Repositories
+* Frontend: [real-estate-zoning-update-tool](https://github.com/BlairLi/real-estate-zoning-update-tool)
+* Backend: [real-estate-zoning-update-tool_backend](https://github.com/BlairLi/real-estate-zoning-update-tool_backend)

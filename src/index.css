@@ -1,13 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
 body {
-  margin: 0;
+    @apply m-0 p-0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  .leaflet-container {
+    @apply h-full w-full;
+  }
+
+  .parcel-popup .leaflet-popup-content-wrapper {
+    @apply bg-white rounded-lg shadow-lg border border-gray-200;
+    animation: popup-fade-in 0.3s ease-out;
+  }
+
+  .parcel-popup .leaflet-popup-content {
+    @apply m-0;
+    min-width: 300px;
+  }
+
+  .parcel-popup .leaflet-popup-tip {
+    @apply bg-white border border-gray-200;
+  }
+
+  .parcel-popup .leaflet-popup-close-button {
+    @apply p-2 text-gray-500 hover:text-gray-700 transition-colors duration-200;
+  }
+
+  .parcel-popup-content {
+    @apply text-sm;
+  }
+
+  .parcel-popup-content h3 {
+    @apply text-lg font-bold mb-3 text-gray-800 border-b border-gray-200 pb-2;
+  }
+
+  .parcel-popup-content p {
+    @apply mb-2 text-gray-700;
+  }
+
+  .parcel-popup-content strong {
+    @apply text-gray-900 font-medium;
+  }
+
+  .summary-section {
+    @apply mb-2;
+  }
+
+  .details-section {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .details-section.hidden {
+    @apply max-h-0 overflow-hidden opacity-0;
+  }
+
+  .details-section:not(.hidden) {
+    @apply max-h-[500px] opacity-100;
+  }
+
+  .toggle-details {
+    @apply w-full text-center py-1 px-2 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+  }
+
+  @keyframes popup-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
